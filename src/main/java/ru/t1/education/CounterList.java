@@ -1,7 +1,5 @@
 package ru.t1.education;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +36,7 @@ public class CounterList<E> {
         return (List<E>) Proxy.newProxyInstance(
             CounterList.class.getClassLoader(),
             new Class[]{List.class},
-            new InvocationHandler() {
-                @Override
-                public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                (proxy, method, args) -> {
                     // Считаем вызовы метода add
                     if (method.getName().equals("add")) {
                         addCount++;
@@ -48,7 +44,6 @@ public class CounterList<E> {
                     // Передаём все вызовы на выполнение настоящему внутреннему списку
                     return method.invoke(delegate, args);
                 }
-            }
         );
     }
 }
