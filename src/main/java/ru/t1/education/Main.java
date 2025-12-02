@@ -1,6 +1,5 @@
 package ru.t1.education;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -12,8 +11,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        List<Integer> realList = new ArrayList<>();
-        CounterList<Integer> countingList = new CounterList<>(realList);
+        CounterList<Integer> realList = new CounterList<>();
+        List<Integer> countingList = realList.getProxy();
 
         // Добавим 5 чисел — но через наш счётчик
         for (int i = 1; i <= 5; i++) {

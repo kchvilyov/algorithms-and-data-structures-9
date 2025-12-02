@@ -2,7 +2,6 @@ package ru.t1.education;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,8 +10,8 @@ class CounterListTest {
 
     @Test
     public void testAddCounting() {
-        CounterList.reset();
-        List<Integer> list = new CounterList<>(new ArrayList<>());
+        CounterList<Integer> counterList = new CounterList<>();
+        List<Integer> list = counterList.getProxy();
 
         list.add(1);
         list.add(2);
